@@ -17,6 +17,8 @@ def call(Map config = [:]) {
     config = defaults + config
     
     // Create helper instance
+    // 'this' refers to the current script object which contains pipeline steps
+    // It's passed to Helper to allow access to pipeline steps like 'echo', 'stage', etc
     def helper = new co.vinod.Helper(this)
     
     // Execute the main logic
