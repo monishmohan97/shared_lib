@@ -6,6 +6,10 @@
  * @return void
  */
 def call(String env) {
+    stage("checkout") {
+        echo "checking out the code on ${env} environment"
+        echo "current working directory: ${pwd()}"
+    }
     stage("compile") {
         echo "compiling on ${env} environment"
     }
