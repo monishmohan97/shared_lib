@@ -15,16 +15,5 @@ def call(gitUrl, branch='main') {
         python -m unittest discover -s tests
         """
     }
-    stage('build'){
-        sh """
-        . .venv/bin/activate
-        python setup.py sdist bdist_wheel
-        """
-    }
-    stage('deploy'){
-        sh """
-        . .venv/bin/activate
-        python -m twine upload dist/*
-        """
-    }
+
 }
