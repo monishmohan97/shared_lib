@@ -3,17 +3,18 @@ def call(gitUrl, branch='main') {
         git url: gitUrl, branch: branch
     }
     stage('setup'){
-        sh """
-        python3 -m venv .venv
-        . .venv/bin/activate
-        pip install -r requirements.txt
-        """
+        bat '''
+                    python -m venv venv
+                    call venv\\Scripts\\activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
     }
     stage('test'){
-        sh """
-        . .venv/bin/activate
-        python -m unittest discover -s tests
-        """
+        bat '''
+                            call venv\\Scripts\\activate
+                            python -m pytest tests/unit --junitxml=unit_test_results.xml
+                        '''
     }
-
+ 
 }
